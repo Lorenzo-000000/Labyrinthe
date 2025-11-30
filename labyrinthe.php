@@ -72,7 +72,7 @@ $result = $stmt->execute();
 echo "<h1>Position : Couloir $position (type : $type_actuel)</h1>";
 
 // Inventaire
-echo $_SESSION["cle"]
+echo $_SESSION["cle"] // Ajt compteur cle + cle utilisable une fois
     ? "<p><b>Inventaire : Clé disponible 🔑</b></p>"
     : "<p><b>Inventaire : aucune clé</b></p>";
 
