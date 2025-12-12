@@ -161,9 +161,16 @@ $result = $stmt->execute();
         Inventaire : <?php echo $_SESSION["nbCle"] > 0 ? $_SESSION["nbCle"]." clé(s)" : "aucune clé"; ?>
     </div>
 
+<<<<<<< HEAD
     <div class="box steps">
         Nombre de pas effectués : <?php echo $_SESSION["pas"]; ?>
     </div>
+=======
+// Inventaire
+echo $_SESSION["cle"] // Ajt compteur cle + cle utilisable une fois
+    ? "<p><b>Inventaire : Clé disponible 🔑</b></p>"
+    : "<p><b>Inventaire : aucune clé</b></p>";
+>>>>>>> 162686a88ecd3b2d9485d4c3bc8eb6c16b32b645
 
     <div class="box">
         <h2>Déplacements possibles :</h2>
@@ -195,5 +202,53 @@ $result = $stmt->execute();
         <button type="submit" name="reset" value="1">Recommencer une nouvelle partie</button>
     </form>
 
+<<<<<<< HEAD
 </body>
 </html>
+=======
+while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+
+    $couloir_dispo = $row["couloir_dispo"];
+    $direction = normaliserDirection($row["direction"]);
+    $direction_text = directionFull($direction);
+    $type_passage = $row["type_passage"];
+
+    //  Passage bloqué si grille et pas de clé
+    if ($type_passage === "grille" && $_SESSION["cle"] === false) {
+        echo "<li>Le couloir $couloir_dispo est bloqué  (grille, pas de clé)</li>";
+        continue;
+    }
+
+    //  Passage grille avec clé → consommation de la clé
+    if ($type_passage === "grille" && $_SESSION["cle"] === true) {
+        echo "<li>Le couloir $couloir_dispo est vérrouiller, veux tu utilisé ta clé? ($direction_text)
+                <a href='?position=$couloir_dispo&grille_ouverte=1'>Aller</a>
+              </li>";
+        continue;
+    }
+
+    //  Passage libre
+    echo "<li>Le couloir $couloir_dispo est disponible, y aller ? ($direction_text)
+            <a href='?position=$couloir_dispo'>Aller</a>
+          </li>";
+
+}
+
+echo "</ul>";
+
+
+// Bouton recommencer
+
+echo "<form method='get' action=''>
+        <button type='submit' name='reset' value='1'>Recommencer une nouvelle partie</button>
+      </form>";
+
+
+// Gestion du reset
+
+if (isset($_GET['reset'])) {
+    session_destroy(); // supprime toutes les données de session
+    header("Location: ".$_SERVER['PHP_SELF']); // recharge la page pour une nouvelle partie
+    exit;
+}
+>>>>>>> 162686a88ecd3b2d9485d4c3bc8eb6c16b32b645
