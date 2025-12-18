@@ -1,0 +1,121 @@
+/* Titre principal */
+h1 {
+    font-size: 32px;
+    color: #ffcc00; /* jaune Mario */
+    text-shadow: 3px 3px 0 #000;
+    text-align: center;
+}
+
+/* Sous-titre */
+h2 {
+    font-size: 22px;
+    color: #ff4444; /* rouge Mario */
+    text-shadow: 2px 2px 0 #000;
+    position: fixed;          /* OBLIGATOIRE */
+    bottom: 165px;             /* distance depuis le bas */
+
+}
+
+/* Paragraphes */
+p {
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+
+li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Liens (actions) */
+a {
+    color: #00ff00; /* vert action */
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 8px;
+    transition: transform 0.2s, color 0.2s;
+}
+
+a:hover {
+    color: #ffff00;
+    transform: scale(1.1);
+}
+
+/* Bouton recommencer */
+p a[href*="reset"] {
+    position: fixed;          /* fixe le bouton */
+    bottom: 0px;             /* distance depuis le bas */
+    left: 50%;                /* position horizontale centrale */
+    transform: translateX(-50%); /* recentre parfaitement */
+
+    display: inline-block;
+    background: #ff0000;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 100px;
+    text-align: center;
+    box-shadow: 0 4px 0 #800000;
+    z-index: 1000;
+}
+
+p a[href*="reset"]:hover {
+    background: #cc0000;
+}
+
+
+/* Effet "danger" pour les passages bloqués */
+li:has(:not(a)) {
+    color: #ff8888;
+}
+
+/* Croix directionnelle */
+.dpad {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+    grid-template-rows: repeat(2, 80px);
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+/* Flèches (images) */
+.fleche-img {
+    width: 90px;
+    height: 64px;
+    display: block;
+    margin: auto;
+    image-rendering: pixelated;
+}
+
+/* Flèche cliquable */
+.fleche {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.fleche:hover {
+    transform: scale(1.2);
+}
+
+/* Flèche bloquée */
+.bloquee {
+    opacity: 0.3;
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}
+
+/* Flèche inexistante */
+.vide {
+    opacity: 0.15;
+}
+
